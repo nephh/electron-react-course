@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      os-utils:
+        specifier: ^0.0.14
+        version: 0.0.14
       react:
         specifier: ^19.1.1
         version: 19.2.0
@@ -21,6 +24,9 @@ importers:
       '@types/node':
         specifier: ^24.6.0
         version: 24.7.2
+      '@types/os-utils':
+        specifier: ^0.0.4
+        version: 0.0.4
       '@types/react':
         specifier: ^19.1.16
         version: 19.2.2
@@ -646,6 +652,9 @@ packages:
 
   '@types/node@24.7.2':
     resolution: {integrity: sha512-/NbVmcGTP+lj5oa4yiYxxeBjRivKQ5Ns1eSZeB99ExsEQ6rX5XYU1Zy/gGxY/ilqtD4Etx9mKyrPxZRetiahhA==}
+
+  '@types/os-utils@0.0.4':
+    resolution: {integrity: sha512-TdQ/6GHzq8YMsDOXHfit8sDD1VjLnqC61sI7ICocwREw/68V5C/bjex+/Jya3XRD3FgGyj6fhTqhbVrXeh8UJg==}
 
   '@types/plist@3.0.5':
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
@@ -1984,6 +1993,9 @@ packages:
     resolution: {integrity: sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==}
     engines: {node: '>=10'}
 
+  os-utils@0.0.14:
+    resolution: {integrity: sha512-ajB8csaHLBvJOYsHJkp8YdO2FvlBbf/ZxaYQwXXRDyQ84UoE+uTuLXxqd0shekXMX6Qr/pt/DDyLMRAMsgfWzg==}
+
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
@@ -3240,6 +3252,8 @@ snapshots:
   '@types/node@24.7.2':
     dependencies:
       undici-types: 7.14.0
+
+  '@types/os-utils@0.0.4': {}
 
   '@types/plist@3.0.5':
     dependencies:
@@ -4892,6 +4906,8 @@ snapshots:
       log-symbols: 4.1.0
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
+
+  os-utils@0.0.14: {}
 
   own-keys@1.0.1:
     dependencies:

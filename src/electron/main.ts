@@ -3,6 +3,12 @@ import path from "path";
 
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({});
-  mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
-  mainWindow.webContents.openDevTools();
+
+  if (process.env.NODE_ENV === "development") {
+    mainWindow.loadURL("http://localhost:5173");
+    mainWindow.webContents.openDevTools();
+  } else {
+    mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
+    console.log("Production mode");
+  }
 });

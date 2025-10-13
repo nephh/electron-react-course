@@ -1,8 +1,8 @@
 {
   "appId": "com.nephh.electron-react-course",
   "productName": "Electron React Course",
-  "icon": "",
   "files": ["dist-electron", "dist-react"],
+  "icon": "./electron.png",
   "mac": {
     "target": "dmg"
   },

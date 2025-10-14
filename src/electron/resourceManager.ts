@@ -4,11 +4,16 @@ import fs from "fs";
 
 const POLL_INTERVAL = 500; // in ms
 
-export function pollResources() {
+export function pollResources(mainWindow: Electron.BrowserWindow) {
   setInterval(async () => {
     const cpuUsage = ((await getCPUUsage()) * 100).toFixed(2) + "% CPU";
     const ramUsage = (getRAMUsage() * 100).toFixed(2) + "% RAM";
     const diskUsage = getDiskUsage();
+    mainWindow.webContents.send("stats-update", {
+      cpuUsage,
+      ramUsage,
+      diskUsage,
+    });
     console.log({ cpuUsage, ramUsage, diskUsage });
   }, POLL_INTERVAL);
 }

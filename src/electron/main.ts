@@ -1,9 +1,12 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { pollResources } from "./resourceManager.js";
+import { getStaticData, pollResources } from "./resourceManager.js";
+import { ipcMain } from "electron/main";
+
+let mainWindow: Electron.BrowserWindow;
 
 function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     webPreferences: {
       preload: path.join(app.getAppPath(), "dist-electron/preload.cjs"),
     },
@@ -38,5 +41,9 @@ app.whenReady().then(() => {
     }
   });
 
-  pollResources();
+  pollResources(mainWindow);
+
+  ipcMain.handle("get-static-data", () => {
+    return getStaticData();
+  });
 });

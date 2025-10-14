@@ -1,6 +1,7 @@
 import osUtils from "os-utils";
 import os from "os";
 import fs from "fs";
+import { ipcSend } from "./utils.js";
 
 const POLL_INTERVAL = 500; // in ms
 
@@ -9,6 +10,11 @@ export function pollResources(mainWindow: Electron.BrowserWindow) {
     const cpuUsage = ((await getCPUUsage()) * 100).toFixed(2) + "% CPU";
     const ramUsage = (getRAMUsage() * 100).toFixed(2) + "% RAM";
     const diskUsage = getDiskUsage();
+    ipcSend("stats-update", mainWindow.webContents, {
+      cpuUsage,
+      ramUsage,
+      diskUsage,
+    });
     mainWindow.webContents.send("stats-update", {
       cpuUsage,
       ramUsage,

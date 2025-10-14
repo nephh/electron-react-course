@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 import { getStaticData, pollResources } from "./resourceManager.js";
-import { ipcMain } from "electron/main";
+import { ipcHandle } from "./utils.js";
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -43,7 +43,7 @@ app.whenReady().then(() => {
 
   pollResources(mainWindow);
 
-  ipcMain.handle("get-static-data", () => {
+  ipcHandle("get-static-data", () => {
     return getStaticData();
   });
 });

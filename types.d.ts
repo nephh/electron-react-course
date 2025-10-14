@@ -1,6 +1,6 @@
 type SystemStats = {
-  cpuUsage: number;
-  ramUsage: number;
+  cpuUsage: string;
+  ramUsage: string;
   diskUsage: {
     total: string;
     usage: string;
@@ -13,6 +13,11 @@ type StaticData = {
   cpuModel: string;
   totalMem: string;
   platform: string;
+};
+
+type EventPayloads = {
+  "stats-update": SystemStats;
+  "get-static-data": StaticData;
 };
 
 interface Window {

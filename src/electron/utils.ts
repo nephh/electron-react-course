@@ -1,6 +1,6 @@
 import { ipcMain } from "electron";
 
-// making the ipc functions type safe
+// create wrappers to make the ipc functions type safe
 //
 
 export function ipcHandle<EventName extends keyof EventPayloads>(

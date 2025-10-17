@@ -17,7 +17,6 @@ function createWindow() {
     // mainWindow.webContents.openDevTools();
   } else {
     mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
-    console.log("Production mode");
   }
 }
 

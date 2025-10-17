@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
+import { BaseChart } from "./components/BaseChart";
+import reactLogo from "./assets/react.svg";
 
 function App() {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
-    window.api.getSystemStats((stats) => console.log(stats));
+    // need to make sure we unsub in case this were a
+    // component that unmounts/remounts
+    const unsub = window.api.getSystemStats((stats) => console.log(stats));
+    return unsub;
   }, []);
 
   return (
     <>
+      <div style={{ height: 120 }}>
+        <BaseChart data={[{ value: 25 }, { value: 30 }, { value: 100 }]} />
+      </div>
       <div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />

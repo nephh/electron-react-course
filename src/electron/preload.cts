@@ -2,7 +2,7 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("api", {
   getSystemStats: (callback) => {
-    ipcOn("stats-update", (_, stats) => callback(stats));
+    return ipcOn("stats-update", (_, stats) => callback(stats));
   },
   getStaticData: () => ipcInvoke("get-static-data"),
 } satisfies Window["api"]);
@@ -13,16 +13,17 @@ contextBridge.exposeInMainWorld("api", {
 
 function ipcOn<EventName extends keyof EventPayloads>(
   eventName: EventName,
-  listener: (
+  callback: (
     event: Electron.IpcRendererEvent,
     payload: EventPayloads[EventName]
   ) => void
 ) {
-  ipcRenderer.on(eventName, listener);
+  ipcRenderer.on(eventName, callback);
+  return () => ipcRenderer.off(eventName, callback);
 }
 
 function ipcInvoke<EventName extends keyof EventPayloads>(
   eventName: EventName
-) {
+): Promise<EventPayloads[EventName]> {
   return ipcRenderer.invoke(eventName);
 }

@@ -20,9 +20,13 @@ type EventPayloads = {
   "get-static-data": StaticData;
 };
 
+type UnsubscribeFunction = () => void;
+
 interface Window {
   api: {
-    getSystemStats: (callback: (stats: SystemStats) => void) => void;
+    getSystemStats: (
+      callback: (stats: SystemStats) => void
+    ) => UnsubscribeFunction;
     getStaticData: () => Promise<StaticData>;
   };
 }

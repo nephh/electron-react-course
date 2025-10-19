@@ -4,7 +4,6 @@ import { pathToFileURL } from "url";
 
 // create wrappers to make the ipc functions type safe
 //
-
 export function ipcHandle<EventName extends keyof EventPayloads>(
   eventName: EventName,
   handler: () => EventPayloads[EventName]

@@ -7,20 +7,14 @@ const POLL_INTERVAL = 500; // in ms
 
 export function pollResources(mainWindow: Electron.BrowserWindow) {
   setInterval(async () => {
-    const cpuUsage = ((await getCPUUsage()) * 100).toFixed(2) + "% CPU";
-    const ramUsage = (getRAMUsage() * 100).toFixed(2) + "% RAM";
+    const cpuUsage = (await getCPUUsage()) * 100;
+    const ramUsage = getRAMUsage() * 100;
     const diskUsage = getDiskUsage();
     ipcSend("stats-update", mainWindow.webContents, {
       cpuUsage,
       ramUsage,
       diskUsage,
     });
-    mainWindow.webContents.send("stats-update", {
-      cpuUsage,
-      ramUsage,
-      diskUsage,
-    });
-    console.log({ cpuUsage, ramUsage, diskUsage });
   }, POLL_INTERVAL);
 }
 

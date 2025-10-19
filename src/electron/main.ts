@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu, Tray } from "electron";
 import path from "path";
 import { getStaticData, pollResources } from "./resourceManager.js";
 import { ipcHandle } from "./utils.js";
@@ -38,6 +38,41 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
+  });
+
+  mainWindow.on("close", (e) => {
+    e.preventDefault();
+    if (process.platform !== "darwin") {
+      mainWindow.hide();
+    } else if (app.dock) {
+      app.dock.hide();
+    }
+  });
+
+  const tray = new Tray(path.join(app.getAppPath(), "electron.png"));
+
+  tray.setContextMenu(
+    Menu.buildFromTemplate([
+      {
+        label: "Show App",
+        click: () => {
+          mainWindow.show();
+          if (app.dock) {
+            app.dock.show();
+          }
+        },
+      },
+      {
+        label: "Quit",
+        click: () => {
+          app.quit();
+        },
+      },
+    ])
+  );
+
+  tray.on("double-click", () => {
+    mainWindow.show();
   });
 
   pollResources(mainWindow);

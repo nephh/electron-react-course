@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   Area,
   AreaChart,
@@ -9,12 +10,18 @@ import {
 
 type BaseChartProps = {
   data: { value: number | undefined }[];
+  maxDataPoints: number;
 };
 
-export function BaseChart({ data }: BaseChartProps) {
+export function BaseChart({ data, maxDataPoints }: BaseChartProps) {
+  // pad data to ensure consistent number of points
+  const preparedData = useMemo(() => {
+    return [...data, ...Array.from({ length: maxDataPoints - data.length })];
+  }, [data, maxDataPoints]);
+
   return (
     <ResponsiveContainer width={"100%"} height={"100%"}>
-      <AreaChart data={data}>
+      <AreaChart data={preparedData}>
         <CartesianGrid stroke="#333" strokeDasharray="5 5" fill="1C1C1C" />
         <Area
           type="monotone"

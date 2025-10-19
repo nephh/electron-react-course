@@ -1,6 +1,6 @@
 type SystemStats = {
-  cpuUsage: string;
-  ramUsage: string;
+  cpuUsage: number;
+  ramUsage: number;
   diskUsage: {
     total: string;
     usage: string;

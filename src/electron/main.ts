@@ -5,7 +5,7 @@ import {
   createWindow,
   handleClose,
   mainWindow,
-} from "./helpers/handleWindow.js";
+} from "./helpers/window.js";
 import { createTray } from "./helpers/tray.js";
 
 app.on("ready", createWindow);

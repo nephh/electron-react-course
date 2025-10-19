@@ -10,7 +10,6 @@ contextBridge.exposeInMainWorld("api", {
 // creating wrappers to make the ipc functions type safe
 // must be declared in preload script
 //
-
 function ipcOn<EventName extends keyof EventPayloads>(
   eventName: EventName,
   callback: (

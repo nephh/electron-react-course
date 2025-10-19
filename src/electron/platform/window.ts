@@ -6,7 +6,7 @@ export let mainWindow: BrowserWindow;
 export function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
-      preload: path.join(app.getAppPath(), "dist-electron/preload.cjs"),
+      preload: path.join(app.getAppPath(), "dist-electron/preload.js"),
     },
   });
 
@@ -14,11 +14,11 @@ export function createWindow() {
     mainWindow.loadURL("http://localhost:5173");
     // mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
+    mainWindow.loadFile(path.join(app.getAppPath(), `dist-react/index.html`));
   }
 }
 
-export function handleClose(mainWindow: BrowserWindow) {
+export function handleClose() {
   // Quit when all windows are closed, except on macOS. There, it's common
   // for applications and their menu bar to stay active until the user quits
   // explicitly with Cmd + Q.

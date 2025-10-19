@@ -1,5 +1,5 @@
 import { app, ipcMain } from "electron";
-import path from "path/win32";
+import path from "path";
 import { pathToFileURL } from "url";
 
 // create wrappers to make the ipc functions type safe

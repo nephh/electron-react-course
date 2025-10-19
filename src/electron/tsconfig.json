@@ -2,9 +2,9 @@
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",
-    "module": "NodeNext",
+    "module": "nodenext",
     "outDir": "../../dist-electron",
     "skipLibCheck": true,
-    "types": ["../../types"]
+    "types": ["../../types"],
   }
 }

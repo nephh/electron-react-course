@@ -1,7 +1,8 @@
-import { app, BrowserWindow, Menu, Tray } from "electron";
+import { app, Menu, Tray } from "electron";
 import path from "path";
+import { mainWindow } from "./window.js";
 
-export function createTray(mainWindow: BrowserWindow) {
+export function createTray() {
   const tray = new Tray(path.join(app.getAppPath(), "electron.png"));
 
   tray.setContextMenu(

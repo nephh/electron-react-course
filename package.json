@@ -6,8 +6,8 @@
   "description": "Learning Electron + React ",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "main": "dist-electron/main.js",
+  "type": "module",
   "scripts": {
     "dev": "npm-run-all -p dev:react dev:electron",
     "dev:react": "vite",

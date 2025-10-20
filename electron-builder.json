@@ -3,7 +3,7 @@
   "productName": "Electron React Course",
   "files": ["dist-electron", "dist-react"],
   "extraResources": ["src/assets/**"],
-  "icon": "./electron.png",
+  "icon": "./src/assets/electron.png",
   "mac": {
     "target": "dmg"
   },

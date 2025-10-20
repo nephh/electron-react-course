@@ -8,7 +8,6 @@ app.whenReady().then(() => {
   createWindow();
   createTray();
   handleClose();
-
   pollResources();
 
   ipcHandle("get-static-data", () => {

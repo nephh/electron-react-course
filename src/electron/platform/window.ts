@@ -11,9 +11,9 @@ export async function createWindow() {
     icon: undefined,
     titleBarStyle: "hidden",
     titleBarOverlay: {
-      color: "#242424",
+      color: "#202020",
       symbolColor: "#74b1be",
-      height: process.platform === "darwin" ? 28 : 32,
+      height: 32,
     },
     backgroundColor: "#242424",
     title: "Simple Resource Monitor",

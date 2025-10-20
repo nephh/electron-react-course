@@ -1,7 +1,7 @@
 import osUtils from "os-utils";
 import os from "os";
 import fs from "fs";
-import { ipcSend } from "./utils";
+import { validatedIpcMain } from "./ipcMain";
 import { win } from "./platform/window";
 
 const POLL_INTERVAL = 500; // in ms
@@ -11,7 +11,7 @@ export function pollResources() {
     const cpuUsage = (await getCPUUsage()) * 100;
     const ramUsage = getRAMUsage() * 100;
     const diskUsage = getDiskUsage();
-    ipcSend("stats-update", win.webContents, {
+    validatedIpcMain.send("stats-update", win.webContents, {
       cpuUsage,
       ramUsage,
       diskUsage,

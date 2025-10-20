@@ -1,15 +1,15 @@
 import { app } from "electron";
-import { getStaticData, pollResources } from "./resourceManager.js";
-import { ipcHandle } from "./utils.js";
-import { createWindow, handleClose, mainWindow } from "./platform/window.js";
-import { createTray } from "./platform/tray.js";
+import { getStaticData, pollResources } from "./resourceManager";
+import { ipcHandle } from "./utils";
+import { createWindow, handleClose } from "./platform/window";
+import { createTray } from "./platform/tray";
 
 app.whenReady().then(() => {
   createWindow();
   createTray();
   handleClose();
 
-  pollResources(mainWindow);
+  pollResources();
 
   ipcHandle("get-static-data", () => {
     return getStaticData();

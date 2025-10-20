@@ -1,11 +1,12 @@
 import osUtils from "os-utils";
 import os from "os";
 import fs from "fs";
-import { ipcSend } from "./utils.js";
+import { ipcSend } from "./utils";
+import { mainWindow } from "./platform/window";
 
 const POLL_INTERVAL = 500; // in ms
 
-export function pollResources(mainWindow: Electron.BrowserWindow) {
+export function pollResources() {
   setInterval(async () => {
     const cpuUsage = (await getCPUUsage()) * 100;
     const ramUsage = getRAMUsage() * 100;

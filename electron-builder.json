@@ -2,7 +2,7 @@
   "appId": "com.nephh.electron-react-course",
   "productName": "Electron React Course",
   "files": ["dist-electron", "dist-react"],
-  "extraResources": ["dist-electron/preload.cjs", "electron.png"],
+  "extraResources": ["src/assets/**"],
   "icon": "./electron.png",
   "mac": {
     "target": "dmg"

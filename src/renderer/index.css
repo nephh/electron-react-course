@@ -11,6 +11,30 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-color: #74b1be transparent;
+  overflow: hidden;
+}
+
+#title-bar {
+  -webkit-app-region: drag;
+  app-region: drag;
+  user-select: none;
+  height: 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9999;
+  background-color: #242424;
+}
+
+/* Ensure interactive controls inside the title bar remain clickable */
+#title-bar * {
+  -webkit-app-region: no-drag;
 }
 
 a {
@@ -22,12 +46,25 @@ a:hover {
   color: #535bf2;
 }
 
+#main-page {
+  /* make the component itself the scrolling viewport */
+  position: fixed;
+  top: 32px; /* match #title-bar height */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 h1 {

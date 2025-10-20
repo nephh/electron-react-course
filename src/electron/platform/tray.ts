@@ -1,6 +1,6 @@
 import { app, Menu, Tray } from "electron";
 import path from "path";
-import { mainWindow } from "./window";
+import { win } from "./window";
 
 const iconPath = path.join(
   app.isPackaged ? process.resourcesPath : app.getAppPath(),
@@ -15,7 +15,7 @@ export function createTray() {
       {
         label: "Open",
         click: () => {
-          mainWindow.show();
+          win.show();
           if (app.dock) {
             app.dock.show();
           }
@@ -31,7 +31,7 @@ export function createTray() {
   );
 
   tray.on("click", () => {
-    mainWindow.show();
+    win.show();
   });
 
   tray.setToolTip("Resource Monitor");

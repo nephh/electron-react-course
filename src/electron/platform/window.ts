@@ -1,20 +1,31 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 
-export let mainWindow: BrowserWindow;
+export let win: BrowserWindow;
 
-export function createWindow() {
-  mainWindow = new BrowserWindow({
+export async function createWindow() {
+  win = new BrowserWindow({
     webPreferences: {
       preload: path.join(app.getAppPath(), "dist-electron/preload.js"),
     },
+    icon: undefined,
+    titleBarStyle: "hidden",
+    titleBarOverlay: {
+      color: "#242424",
+      symbolColor: "#74b1be",
+      height: process.platform === "darwin" ? 28 : 32,
+    },
+    backgroundColor: "#242424",
+    title: "Simple Resource Monitor",
   });
 
   if (process.env.NODE_ENV === "development") {
-    mainWindow.loadURL("http://localhost:5173");
-    // mainWindow.webContents.openDevTools();
+    // NOTE: make `createWindow` async (change `export function createWindow()` to `export async function createWindow()`)
+    // wait once for 3000 ms before continuing
+    win.loadURL("http://localhost:5173");
+    // win.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(app.getAppPath(), `dist-react/index.html`));
+    win.loadFile(path.join(app.getAppPath(), `dist-react/index.html`));
   }
 }
 
@@ -42,16 +53,16 @@ export function handleClose() {
     willClose = true;
   });
 
-  mainWindow.on("show", () => {
+  win.on("show", () => {
     willClose = false;
   });
 
-  mainWindow.on("close", (e) => {
+  win.on("close", (e) => {
     if (willClose) {
       return;
     }
 
     e.preventDefault();
-    mainWindow.hide();
+    win.hide();
   });
 }

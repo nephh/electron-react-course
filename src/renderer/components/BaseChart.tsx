@@ -20,7 +20,7 @@ export function BaseChart({ data, maxDataPoints }: BaseChartProps) {
   }, [data, maxDataPoints]);
 
   return (
-    <ResponsiveContainer width={"100%"} height={"100%"}>
+    <ResponsiveContainer width="100%" height="100%">
       <AreaChart data={preparedData}>
         <CartesianGrid stroke="#333" strokeDasharray="5 5" fill="1C1C1C" />
         <Area
@@ -31,9 +31,9 @@ export function BaseChart({ data, maxDataPoints }: BaseChartProps) {
           fill="#0A4D5C"
           fillOpacity={0.3}
           isAnimationActive={false}
-          //   dot={false}
+          dot={false}
         />
-        <XAxis stroke="transparent" height={0} />
+        <XAxis stroke="transparent" height={5} />
         <YAxis stroke="transparent" domain={[0, 100]} width={0} />
       </AreaChart>
     </ResponsiveContainer>
